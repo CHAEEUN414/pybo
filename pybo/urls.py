@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import base_views, question_views, answer_views
+from .views import base_views, question_views
 
 app_name = 'pybo'
 
@@ -10,6 +10,10 @@ urlpatterns = [
          base_views.index, name='index'),
     path('<int:question_id>/',
          base_views.detail, name='detail'),
+    path('completed/<int:question_id>/',
+         base_views.completed, name='completed'),
+    path('completed/<int:question_id>/',
+         base_views.completed, name='completed'),
 
     # question_views.py
     path('question/create/',
@@ -19,13 +23,7 @@ urlpatterns = [
     path('question/delete/<int:question_id>/',
          question_views.question_delete, name='question_delete'),
 
-    # answer_views.py
-    path('answer/create/<int:question_id>/',
-         answer_views.answer_create, name='answer_create'),
-    path('answer/modify/<int:answer_id>/',
-         answer_views.answer_modify, name='answer_modify'),
-    path('answer/delete/<int:answer_id>/',
-         answer_views.answer_delete, name='answer_delete'),
-    path('question/vote/<int:question_id>/', question_views.question_vote, name='question_vote'),
-    path('answer/vote/<int:answer_id>/', answer_views.answer_vote, name='answer_vote'),
+    path('question/vote/<int:question_id>/',
+         question_views.question_vote, name='question_vote'),
+
 ]
